@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
 import androidx.compose.ui.Modifier
-import androidx.navigation.compose.rememberNavController
 import org.koin.compose.koinInject
 import ru.kazan.itis.bikmukhametov.database.locale.AppLanguage
 import ru.kazan.itis.bikmukhametov.database.locale.AppLanguageRepository
@@ -34,8 +33,7 @@ fun App() {
                         .fillMaxSize()
                         .safeDrawingPadding()
                 ) {
-                    val navController = rememberNavController()
-                    AppNavigation(navController = navController)
+                    AppNavigation()
                 }
             }
         }
