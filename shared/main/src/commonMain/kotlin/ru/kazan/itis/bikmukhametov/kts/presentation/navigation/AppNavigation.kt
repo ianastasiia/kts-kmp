@@ -2,13 +2,19 @@ package ru.kazan.itis.bikmukhametov.kts.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.snapshotFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.filterNotNull
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import kotlinx.coroutines.launch
 import org.koin.compose.koinInject
+import ru.kazan.itis.bikmukhametov.analytics.AppAnalytics
 import ru.kazan.itis.bikmukhametov.chat.impl.presentation.navigation.ChatRoute
 import ru.kazan.itis.bikmukhametov.chat.impl.presentation.screen.ChatScreen
 import ru.kazan.itis.bikmukhametov.database.onboarding.OnboardingCompletedRepository
@@ -34,9 +40,12 @@ fun AppNavigation(
         navSerializationConfig.savedStateConfiguration,
         startDestination,
     )
+    val analytics = koinInject<AppAnalytics>()
     val logoutEventBus = koinInject<LogoutEventBus>()
     val sessionChecker = koinInject<SessionChecker>()
     val onboardingRepository = koinInject<OnboardingCompletedRepository>()
+
+    TrackScreenLaunches(backStack = backStack, analytics = analytics)
 
     /*
      * Один проход при старте: если онбординг уже пройден — либо Main (живая сессия), либо Login.
@@ -147,4 +156,24 @@ private fun MutableList<NavKey>.replaceTop(route: NavKey) {
 private fun MutableList<NavKey>.setRoot(route: NavKey) {
     clear()
     add(route)
+}
+
+@Composable
+private fun TrackScreenLaunches(
+    backStack: MutableList<NavKey>,
+    analytics: AppAnalytics,
+) {
+    val analyticsState by rememberUpdatedState(analytics)
+
+    LaunchedEffect(backStack) {
+        snapshotFlow { backStack.lastOrNull() }
+            .filterNotNull()
+            .distinctUntilChanged()
+            .collect { route ->
+                analyticsState.logEvent(
+                    name = route.toLaunchEventName(),
+                    params = route.toLaunchEventParams(),
+                )
+            }
+    }
 }
