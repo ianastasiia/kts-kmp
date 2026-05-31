@@ -11,6 +11,7 @@ import ru.kazan.itis.bikmukhametov.profile.impl.domain.usecase.LogoutUseCaseImpl
 import ru.kazan.itis.bikmukhametov.profile.impl.presentation.screen.ProfileViewModel
 
 val profileModule = module {
+
     // data layer
     factory<ProfileRepository> { ProfileRepositoryImpl(get(), get()) }
 

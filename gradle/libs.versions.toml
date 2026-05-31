@@ -21,6 +21,10 @@ detektVersion = "1.23.8"
 # Навигация
 navigationCompose = "2.9.2"
 
+multiplatform-nav3-ui = "1.0.0-alpha05"
+compose-multiplatform-adaptive = "1.3.0-alpha02"
+compose-multiplatform-lifecycle = "2.10.0-alpha05"
+
 # Coil
 coilVersion = "3.3.0"
 
@@ -99,7 +103,9 @@ compose-components-resources = { module = "org.jetbrains.compose.components:comp
 compose-uiToolingPreview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "composeMultiplatform" }
 
 # Навигация
-jetbrains-compose-navigation = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+jetbrains-navigation3-ui = { module = "org.jetbrains.androidx.navigation3:navigation3-ui", version.ref = "multiplatform-nav3-ui" }
+jetbrains-material3-adaptiveNavigation3 = { module = "org.jetbrains.compose.material3.adaptive:adaptive-navigation3", version.ref = "compose-multiplatform-adaptive" }
+jetbrains-lifecycle-viewmodelNavigation3 = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "compose-multiplatform-lifecycle" }
 
 # Coil
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilVersion" }
