@@ -39,6 +39,7 @@ include(":shared:main")
 include(":shared:core:designsystem")
 include(":shared:core:network")
 include(":shared:core:database")
+include(":shared:core:analytics")
 
 include(":shared:feature:onboarding")
 

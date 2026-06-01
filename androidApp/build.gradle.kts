@@ -79,6 +79,7 @@ dependencies {
     // Модуль зонтик
     implementation(projects.shared)
     implementation(projects.shared.core.database)
+    implementation(projects.shared.core.analytics)
 
     // Koin
     implementation(libs.koin.android)

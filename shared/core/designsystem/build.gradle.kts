@@ -42,6 +42,8 @@ kotlin {
             implementation(libs.compose.material3)
             implementation(libs.compose.components.resources)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
+            implementation(libs.kotlinx.serialization.json)
+            api(libs.jetbrains.navigation3.ui)
         }
         iosMain.dependencies {
             implementation(libs.compose.components.resources)
