@@ -31,6 +31,7 @@ kotlin {
             implementation(projects.shared.core.designsystem)
             implementation(projects.shared.core.network)
             implementation(projects.shared.core.database)
+            implementation(projects.shared.core.analytics)
 
             implementation(projects.shared.feature.onboarding)
 
