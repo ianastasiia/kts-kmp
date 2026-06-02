@@ -45,7 +45,7 @@ val networkModule = module {
 
     single { LogoutEventBus() }
 
-    single<SpaceProvider> { SpaceProviderImpl(get(named(PlatformDataStoreNames.SPACE)), get()) }
+//    single<SpaceProvider> { SpaceProviderImpl(get(named(PlatformDataStoreNames.SPACE)), get()) }
 
     single { PersistentCookieStorage(get()) }
 

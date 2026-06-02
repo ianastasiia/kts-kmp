@@ -1,3 +1,11 @@
+**Team Members**
+
+Our development team consists of:
+
+- [Anastasiia](https://github.com/ianastasiia) (iOS / KMP integration)
+
+- [Timur](https://github.com/Nbveh25) (Backend / Android)
+
 This is a Kotlin Multiplatform project targeting Android, iOS.
 
 * [/composeApp](./composeApp/src) is for code that will be shared across your Compose Multiplatform applications.

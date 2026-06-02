@@ -26,6 +26,16 @@ kotlin {
     }
 
     sourceSets {
+        val iosMain by creating {
+            dependsOn(commonMain.get())
+        }
+        val iosSimulatorArm64Main by getting {
+            dependsOn(iosMain)
+        }
+        val iosArm64Main by getting {
+            dependsOn(iosMain)
+        }
+
         commonMain.dependencies {
 
             implementation(projects.shared.core.designsystem)

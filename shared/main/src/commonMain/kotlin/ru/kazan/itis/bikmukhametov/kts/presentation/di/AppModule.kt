@@ -1,7 +1,9 @@
 package ru.kazan.itis.bikmukhametov.kts.presentation.di
 
+import org.koin.core.module.Module
 import ru.kazan.itis.bikmukhametov.chat.impl.di.chatModule
 import ru.kazan.itis.bikmukhametov.chat.impl.di.chatPlatformModule
+import ru.kazan.itis.bikmukhametov.database.di.databasePlatformModules
 import ru.kazan.itis.bikmukhametov.interlocutorinfo.impl.di.interlocutorInfoModule
 import ru.kazan.itis.bikmukhametov.impl.di.loginModule
 import ru.kazan.itis.bikmukhametov.kts.presentation.navigation.AppNavSerializationConfig

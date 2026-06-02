@@ -84,7 +84,7 @@ internal class PersistentCookieStorage(
 
     private fun isCookieValid(cookie: Cookie): Boolean {
         val expires = cookie.expires ?: return true
-        return expires.timestamp > System.currentTimeMillis()
+        return expires.timestamp > currentTimeMillis()
     }
 
     /* Домен верхнего уровня (metac-92.smartbotpro.ru → smartbotpro.ru), чтобы куки шли на все поддомены. */

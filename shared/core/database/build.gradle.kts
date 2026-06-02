@@ -26,6 +26,16 @@ kotlin {
     }
 
     sourceSets {
+        val iosMain by creating {
+            dependsOn(commonMain.get())
+        }
+        val iosSimulatorArm64Main by getting {
+            dependsOn(iosMain)
+        }
+        val iosArm64Main by getting {
+            dependsOn(iosMain)
+        }
+
         commonMain.dependencies {
             implementation(libs.koin.core)
             implementation(libs.kotlinx.coroutines.core)
@@ -39,6 +49,7 @@ kotlin {
             implementation(libs.datastore.preferences)
         }
         iosMain.dependencies {
+            implementation(libs.androidx.sqlite.bundled)
         }
     }
 }

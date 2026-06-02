@@ -1,6 +1,5 @@
 package ru.kazan.itis.bikmukhametov.impl.presentation.component
 
-import androidx.compose.ui.viewinterop.AndroidView
 import android.annotation.SuppressLint
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
@@ -9,7 +8,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
 
 private const val MIME_TYPE = "text/html"
 private const val ENCODING = "UTF-8"
@@ -22,12 +23,17 @@ actual fun YandexCaptchaWidget(
     modifier: Modifier,
     onToken: (String) -> Unit
 ) {
+
+    val jsCallback =
+        "if(window.AndroidCallback && typeof window.AndroidCallback.onToken === 'function') " +
+                "{ AndroidCallback.onToken(token); }"
+
     AndroidView(
         modifier = modifier
             .fillMaxWidth()
             .height(110.dp),
-        factory = { context ->
-            WebView(context).apply {
+        factory = { ctx ->
+            WebView(ctx).apply {
                 settings.javaScriptEnabled = true
                 settings.domStorageEnabled = true
                 settings.useWideViewPort = true
@@ -46,7 +52,7 @@ actual fun YandexCaptchaWidget(
 
                 loadDataWithBaseURL(
                     AUTH_URL,
-                    yandexCaptchaHtml(siteKey),
+                    yandexCaptchaHtml(siteKey, jsCallback),
                     MIME_TYPE,
                     ENCODING,
                     null
